@@ -1,0 +1,15 @@
+{
+  "date": "12/19/2025",
+  "exercises": [
+    {
+      "name": "BENCH_PRESS",
+      "sets": 3,
+      "reps": 10,
+      "weight": 75
+    },
+    {
+      "name": "TREADMILL",
+      "duration": 15
+    }
+  ]
+}
