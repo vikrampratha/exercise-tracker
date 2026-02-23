@@ -4,5 +4,6 @@ import java.util.List;
 
 public record WorkoutDTO(
         String date,
+        String type,
         List<ExerciseDTO> exercises)
 {}

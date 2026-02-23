@@ -11,6 +11,7 @@ import com.vpratha.exercisetracker.database.repo.WorkoutRepo;
 import com.vpratha.exercisetracker.dto.ExerciseDTO;
 import com.vpratha.exercisetracker.dto.WorkoutDTO;
 import com.vpratha.exercisetracker.enums.ExerciseType;
+import com.vpratha.exercisetracker.enums.WorkoutType;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class WorkoutService {
         Workout workout = new Workout();
 
         workout.setDate(LocalDate.parse(workoutDTO.date()));
+        workout.setType(WorkoutType.valueOf(workoutDTO.type()));
 
         for (ExerciseDTO exerciseDTO : workoutDTO.exercises()) {
             Exercise exercise = createExercise(exerciseDTO);
