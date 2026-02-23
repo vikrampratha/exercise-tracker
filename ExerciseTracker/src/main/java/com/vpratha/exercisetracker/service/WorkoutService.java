@@ -40,11 +40,17 @@ public class WorkoutService {
         return workoutRepo.save(workout);
     }
 
+    /**
+     * Helper method called by insertWorkout().
+     * Converts an exercise
+     * @param exerciseDTO exerciseDTO.name() must exist in the ExerciseName JPA Repository.
+     * @return an Exercise object based on ExerciseDTO's type
+     */
     private Exercise createExercise(ExerciseDTO exerciseDTO) {
         ExerciseName name = exerciseNameRepo.findByName(exerciseDTO.name());
         ExerciseType type = name.getType();
 
-        switch(type) {
+        switch (type) {
             case CARDIO -> {
                 CardioExercise c = new CardioExercise();
                 c.setExerciseName(name);

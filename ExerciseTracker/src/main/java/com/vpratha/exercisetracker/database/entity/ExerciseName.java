@@ -3,7 +3,6 @@ package com.vpratha.exercisetracker.database.entity;
 import com.vpratha.exercisetracker.dto.ExerciseNameDTO;
 import com.vpratha.exercisetracker.enums.ExerciseType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

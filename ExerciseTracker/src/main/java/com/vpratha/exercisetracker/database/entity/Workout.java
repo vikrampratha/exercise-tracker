@@ -27,6 +27,7 @@ public class Workout {
     private LocalTime time;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(255)")
     private WorkoutType type;
 
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
