@@ -21,6 +21,6 @@ public class ExerciseNameController {
     public ExerciseName createExerciseName(@RequestBody ExerciseNameDTO exerciseNameDTO) {
         ExerciseName exerciseName = new ExerciseName(exerciseNameDTO);
         log.info("{}, {}", exerciseName.getName(), exerciseName.getType());
-        return exerciseNameRepo.save(new ExerciseName(exerciseNameDTO));
+        return exerciseNameRepo.save(exerciseName);
     }
 }
