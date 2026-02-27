@@ -28,8 +28,12 @@ public class WorkoutController {
     }
 
     @GetMapping("/getAllWorkouts")
-    public String getAllWorkouts() {
-        List<Workout> workouts = workoutRepo.findAll();
-        return workouts.toString();
+    public List<WorkoutDTO> getAllWorkouts() {
+        List<WorkoutDTO> workouts = workoutRepo.findAll()
+                .stream()
+                .map(workoutService::mapToDTO)
+                .toList();
+        System.out.println(workouts);
+        return workouts;
     }
 }

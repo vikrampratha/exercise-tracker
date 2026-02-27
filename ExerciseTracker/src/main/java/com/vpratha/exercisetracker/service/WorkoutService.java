@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class WorkoutService {
@@ -76,5 +77,44 @@ public class WorkoutService {
             }
             default -> throw new IllegalStateException("Unsupported type: " + type);
         }
+    }
+
+    public WorkoutDTO mapToDTO(Workout workout) {
+        List<ExerciseDTO> exercisesDTO = workout.getExercises()
+                .stream()
+                .map(this::mapExerciseToDTO)
+                .toList();
+        return new WorkoutDTO(
+                workout.getDate().toString(),
+                workout.getType().name(),
+                exercisesDTO
+        );
+    }
+
+    public ExerciseDTO mapExerciseToDTO(Exercise ex) {
+        return switch (ex) {
+            case WeightedStrengthExercise w -> new ExerciseDTO(
+                    w.getExerciseName().getName(),
+                    w.getSets(),
+                    w.getReps(),
+                    w.getWeight(),
+                    null
+            );
+            case StrengthExercise s -> new ExerciseDTO(
+                    s.getExerciseName().getName(),
+                    s.getSets(),
+                    s.getReps(),
+                    null,
+                    null
+            );
+            case CardioExercise c -> new ExerciseDTO(
+                    c.getExerciseName().getName(),
+                    null,
+                    null,
+                    null,
+                    c.getDuration()
+            );
+            default -> throw new IllegalStateException("Unexpected value: " + ex);
+        };
     }
 }
