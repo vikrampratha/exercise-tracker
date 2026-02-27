@@ -3,11 +3,9 @@ package com.vpratha.exercisetracker.controller;
 import com.vpratha.exercisetracker.database.entity.Workout;
 import com.vpratha.exercisetracker.database.repo.WorkoutRepo;
 import com.vpratha.exercisetracker.dto.WorkoutDTO;
+import com.vpratha.exercisetracker.enums.WorkoutType;
 import com.vpratha.exercisetracker.service.WorkoutService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +33,21 @@ public class WorkoutController {
                 .toList();
         System.out.println(workouts);
         return workouts;
+    }
+
+    @GetMapping("/workouts/recent")
+    public List<WorkoutDTO> getRecentWorkouts() {
+        return workoutRepo.findTop10ByOrderByDateDesc()
+                .stream()
+                .map(workoutService::mapToDTO) // your DTO mapper
+                .toList();
+    }
+
+    @GetMapping("/workouts/recent")
+    public List<WorkoutDTO> getRecentWorkoutsByType(@RequestParam WorkoutType type) {
+        return workoutRepo.findTop10ByTypeOrderByDateDesc(type)
+                .stream()
+                .map(workoutService::mapToDTO)
+                .toList();
     }
 }
