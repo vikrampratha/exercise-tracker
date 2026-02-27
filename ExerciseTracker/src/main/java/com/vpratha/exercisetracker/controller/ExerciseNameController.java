@@ -4,9 +4,12 @@ import com.vpratha.exercisetracker.database.entity.ExerciseName;
 import com.vpratha.exercisetracker.database.repo.ExerciseNameRepo;
 import com.vpratha.exercisetracker.dto.ExerciseNameDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -22,5 +25,10 @@ public class ExerciseNameController {
         ExerciseName exerciseName = new ExerciseName(exerciseNameDTO);
         log.info("{}, {}", exerciseName.getName(), exerciseName.getType());
         return exerciseNameRepo.save(exerciseName);
+    }
+
+    @GetMapping("/exerciseNames")
+    public List<ExerciseName> getAllExerciseNames() {
+        return exerciseNameRepo.findAll();
     }
 }
