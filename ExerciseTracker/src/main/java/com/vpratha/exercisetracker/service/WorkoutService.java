@@ -85,6 +85,7 @@ public class WorkoutService {
                 .map(this::mapExerciseToDTO)
                 .toList();
         return new WorkoutDTO(
+                workout.getId(),
                 workout.getDate().toString(),
                 workout.getType().name(),
                 exercisesDTO

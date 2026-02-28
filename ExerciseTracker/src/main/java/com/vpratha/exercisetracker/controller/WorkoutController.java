@@ -43,7 +43,7 @@ public class WorkoutController {
                 .toList();
     }
 
-    @GetMapping("/workouts/recent")
+    @GetMapping("/workouts/recent/type")
     public List<WorkoutDTO> getRecentWorkoutsByType(@RequestParam WorkoutType type) {
         return workoutRepo.findTop10ByTypeOrderByDateDesc(type)
                 .stream()
