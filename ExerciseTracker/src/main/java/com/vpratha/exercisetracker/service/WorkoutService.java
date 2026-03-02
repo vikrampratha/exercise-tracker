@@ -96,6 +96,7 @@ public class WorkoutService {
         return switch (ex) {
             case WeightedStrengthExercise w -> new ExerciseDTO(
                     w.getExerciseName().getName(),
+                    w.getExerciseName().getType().name(),
                     w.getSets(),
                     w.getReps(),
                     w.getWeight(),
@@ -103,6 +104,7 @@ public class WorkoutService {
             );
             case StrengthExercise s -> new ExerciseDTO(
                     s.getExerciseName().getName(),
+                    s.getExerciseName().getType().name(),
                     s.getSets(),
                     s.getReps(),
                     null,
@@ -110,6 +112,7 @@ public class WorkoutService {
             );
             case CardioExercise c -> new ExerciseDTO(
                     c.getExerciseName().getName(),
+                    c.getExerciseName().getType().name(),
                     null,
                     null,
                     null,

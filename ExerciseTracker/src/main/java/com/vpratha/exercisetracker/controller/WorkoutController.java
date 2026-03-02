@@ -39,7 +39,7 @@ public class WorkoutController {
     public List<WorkoutDTO> getRecentWorkouts() {
         return workoutRepo.findTop10ByOrderByDateDesc()
                 .stream()
-                .map(workoutService::mapToDTO) // your DTO mapper
+                .map(workoutService::mapToDTO)
                 .toList();
     }
 
