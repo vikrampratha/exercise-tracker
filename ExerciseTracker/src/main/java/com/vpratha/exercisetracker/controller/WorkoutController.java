@@ -19,6 +19,11 @@ public class WorkoutController {
         this.workoutRepo = workoutRepo;
     }
 
+    @GetMapping("/health")
+    public String health()  {
+        return "Hello Extrack";
+    }
+
     @PostMapping("/createWorkout")
     public String createWorkout(@RequestBody WorkoutDTO workoutDTO) {
         Workout workout = workoutService.insertWorkout(workoutDTO);
